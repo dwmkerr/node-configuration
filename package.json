@@ -1,0 +1,24 @@
+{
+  "name": "configuration",
+  "version": "0.1.0",
+  "description": "Simple configuration for Node applications, load from files, environment variables or parameters.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test:cov": "jest --coverage --coverageDirectory=artifacts/coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dwmkerr/node-configuration.git"
+  },
+  "author": "Dave Kerr <github.com/dwmkerr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dwmkerr/node-configuration/issues"
+  },
+  "homepage": "https://github.com/dwmkerr/node-configuration#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
