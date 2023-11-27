@@ -2,6 +2,59 @@
 
 Simple configuration for Node applications, load from files, environment variables or parameters.
 
+## Quickstart
+
+Install:
+
+```bash
+npm install --save node-configuration
+```
+
+Load basic configuration from the environment:
+
+```javascript
+const config = configuration.load({
+    port: null,
+});
+console.log(`Environment variable PORT: ${config.port}`);
+```
+
+Load basic configuration from a file:
+
+Create a simple JSON file:
+
+```bash
+cat << EOF > config.json
+{
+  "clientId": "myapp",
+  "clientSecret": "mysecret"
+}
+EOF
+```
+
+Use it like so:
+
+```javascript
+const config = configuration.load({
+    port: null,
+    clientId: param,
+    clientSecret: param,
+}, {
+    localConfigFile: "./config.json"
+});
+console.log(config);
+```
+
+## Advanced Techniques
+
+Validation of parameters.
+
+For more sophisticated validation of types, string lengths, patterns, etc etc, a dedicated library can be used. For example, using [Joi](https://joi.dev):
+
+```javascript
+TODO
+```
+
 ## TODO
 
 - [ ] prefix app name for env vars option
