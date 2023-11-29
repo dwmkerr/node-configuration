@@ -1,8 +1,10 @@
 const fs = require('fs');
 const { nameToEnvironmentVariableName } = require('./parameters');
 
-function loadParameter(spec, env) {
-  const parameterName = nameToEnvironmentVariableName(spec.name);
+function loadParameter(spec, env, appPrefix) {
+  const parameterName = nameToEnvironmentVariableName(spec.name, {
+    appPrefix,
+  });
   return env[parameterName];
 }
 
@@ -12,6 +14,7 @@ function loadJson(path) {
 
 function load(spec, options) {
   const env = options.env || process.env;
+  const appPrefix = options.appPrefix;
   const localConfigFile = options.localConfigFile || null;
 
   const localConfigContents = localConfigFile ? loadJson(localConfigFile) : {};
@@ -21,7 +24,7 @@ function load(spec, options) {
     .getOwnPropertyNames(spec)
     .reduce((result, propertyName) => {
       const configValue = localConfigFile ? localConfigContents[propertyName] : undefined;
-      const envValue = loadParameter({ name: propertyName}, env);
+      const envValue = loadParameter({ name: propertyName}, env, appPrefix);
       const value = configValue || envValue;
       console.log(`Property ${propertyName}
   Local Config File: ${configValue}

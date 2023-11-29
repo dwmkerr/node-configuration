@@ -45,6 +45,33 @@ const config = configuration.load({
 console.log(config);
 ```
 
+### Loading Environment Variables
+
+You can specify a prefix for environment variables to reduce the chance that your parameter names clash with other parameters. With the following environment variables:
+
+```bash
+export MYAPP_VERBOSE=1
+```
+
+And this config:
+
+```javascript
+console.log(configuration.load({
+  verbose
+}, {
+  appPrefix: "MYAPP"
+});
+```
+
+The output is:
+
+```
+{
+  verbose: "1"
+}
+```
+
+
 ## Advanced Techniques
 
 Validation of parameters.
@@ -54,10 +81,6 @@ For more sophisticated validation of types, string lengths, patterns, etc etc, a
 ```javascript
 TODO
 ```
-
-## TODO
-
-- [ ] prefix app name for env vars option
 
 ## Braindump
 
@@ -119,3 +142,8 @@ app.listen(PORT, async () => {
 | npm run test:debug | Debug tests. |
 | npm run test:cov | Run tests with coverage reported. |
 
+
+## TODO
+
+- [ ] prefix app name for env vars option
+- [ ] create the param.number() type stuff
